@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blackYang {
+  transform: rotate(180deg) scaleX(-1) translate(-27px, 1px);
+}
+.backdrop {
+  background-image: url("/public/Images/homeBG.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.section {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.907),
+      rgba(0, 0, 0, 0.692)
+    ),
+    url("/public/Images/sectionBG.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
