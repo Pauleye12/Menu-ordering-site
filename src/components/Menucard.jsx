@@ -1,6 +1,28 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA96zo1AnT_nullBclQvHZHtOD0Kf0wrO0",
+  authDomain: "yinyangmenu-2024.firebaseapp.com",
+  projectId: "yinyangmenu-2024",
+  storageBucket: "yinyangmenu-2024.appspot.com",
+  messagingSenderId: "670137131222",
+  appId: "1:670137131222:web:63613c1b8c5d559fad6977",
+  measurementId: "G-C2JWQ8XD0L",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 function Menucard({ dish }) {
   const [showOrder, setShowOrder] = useState(false);
   const [tableDets, setTableDets] = useState({
@@ -22,6 +44,9 @@ function Menucard({ dish }) {
     e.preventDefault();
     console.log("Order submitted");
     console.log(tableDets);
+    prompt(
+      `Thank you for placing Your order for ${tableDets.Order} on table ${tableDets.tableNum} . YINYANG...`
+    );
     navigate("/");
   };
   return (
