@@ -17,7 +17,7 @@ function CategoryList() {
       <h1 className="text-[#d57c2c] text-2xl text-center ">
         Please select your category
       </h1>
-      <div className="flex flex-wrap justify-around gap-8 overflow-auto ">
+      <div className="flex flex-wrap justify-around gap-8  ">
         {categories.map((category, index) => (
           <CategoryCard key={index} category={category} />
         ))}
