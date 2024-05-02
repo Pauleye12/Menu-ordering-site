@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "./Loader";
+import ThankYou from "./ThankYou";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
+import firebase from "firebase/compat/app";
+// Required for side-effects
+import "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -22,6 +29,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 function Menucard({ dish }) {
   const [showOrder, setShowOrder] = useState(false);
@@ -29,6 +38,9 @@ function Menucard({ dish }) {
     tableNum: "",
     Order: "",
   });
+  const [showLoader, setShowLoader] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   //   const [tableNum, setTableNum] = useState("");
@@ -40,15 +52,30 @@ function Menucard({ dish }) {
     setShowOrder(!showOrder);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Order submitted");
-    console.log(tableDets);
-    prompt(
-      `Thank you for placing Your order for ${tableDets.Order} on table ${tableDets.tableNum} . YINYANG...`
-    );
-    navigate("/");
+    if (tableDets.tableNum === "") {
+      alert("Please enter table number");
+    } else {
+      setShowLoader(true);
+      setShowThankYou(false);
+      console.log("Order submitted");
+      console.log(tableDets);
+      try {
+        // Call API to get trending movies
+        const docRef = await addDoc(collection(db, "orders"), tableDets);
+        console.log("Document written with ID: ", docRef.id);
+        setShowThankYou(true);
+      } catch (err) {
+        // Handle error
+        setError(err);
+      } finally {
+        // Hide loading indicator
+        setShowLoader(false);
+      }
+    }
   };
+
   return (
     <div className="flex flex-col gap-3 pb-2 rounded-md  bg-[#e5720e] max-w-[300px]">
       <div
@@ -80,7 +107,7 @@ function Menucard({ dish }) {
                 type="number"
                 name="tableNum"
                 id="tableNum"
-                required
+                required={true}
               />
             </div>
             <button
@@ -93,6 +120,8 @@ function Menucard({ dish }) {
           </form>
         </div>
       )}
+      {showLoader && <Loader />}
+      {showThankYou && <ThankYou info={dish.name} />}
     </div>
   );
 }

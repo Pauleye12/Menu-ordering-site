@@ -5,6 +5,9 @@
 .blackYang {
   transform: rotate(180deg) scaleX(-1) translate(-27px, 1px);
 }
+.blackYang2 {
+  transform: rotate(180deg) scaleX(-1) translate(-15px, 3px);
+}
 .backdrop {
   background-image: url("/public/Images/homeBG.jpg");
   background-position: center;
