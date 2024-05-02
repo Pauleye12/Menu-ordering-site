@@ -77,7 +77,7 @@ function Menucard({ dish }) {
   };
 
   return (
-    <div className="flex flex-col gap-3 pb-2 rounded-md  bg-[#e5720e] max-w-[300px]">
+    <div className="flex flex-col gap-3 pb-2 rounded-md  bg-[#e5720e] max-w-[300px] w-full ">
       <div
         onClick={() => toggleSetOrder(dish.name)}
         className="flex flex-col rounded-md bg-[#e5720e] text-black max-w-[300px]   "

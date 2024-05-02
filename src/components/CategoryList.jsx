@@ -5,10 +5,12 @@ const categories = [
   {
     image: "/Images/VIP1.jpg",
     section: "VIP",
+    url: "vip-auth",
   },
   {
     image: "/Images/Regular.jpg",
     section: "Regular",
+    url: "regular-menu",
   },
 ];
 function CategoryList() {

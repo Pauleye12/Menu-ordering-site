@@ -6,10 +6,14 @@ const Dishes = [
     image: "/Images/rice.jpg",
     name: "Jollof rice, Plantain and moinmoin",
   },
+  {
+    image: "/Images/poundedYam.jpg",
+    name: "Pounded Yam and Gbegiri",
+  },
 ];
 function Menulist() {
   return (
-    <div className="flex flex-col justify-between items-center gap-10 max-h-[52%] h-full ">
+    <div className="flex flex-col justify-between items-center gap-10 max-h-[72%] h-full ">
       <h1 className="text-[#d57c2c] text-2xl text-center ">
         Please select your Meal
       </h1>
