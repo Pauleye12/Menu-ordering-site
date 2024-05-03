@@ -9,7 +9,7 @@ const Dishes = [
   },
   {
     image: "/Images/poundedYam.jpg",
-    name: "Pounded Yam and Gbegiri",
+    name: "Pounded Yam and Egusi",
   },
 ];
 
