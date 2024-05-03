@@ -1,10 +1,30 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
+const load = {
+  initial: {
+    scale: 0,
+    opacity: 0,
+  },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      type: "spring",
+      ease: "easeIn",
+    },
+  },
+};
 function ThankYou({ info }) {
   return (
     <div className="w-screen bg-[#12121270] fixed top-0 left-0 h-screen flex flex-col items-center justify-center">
-      <div className="bg-white max-w-[350px] w-full max-h-[200px] h-full rounded-md px-3 py-2 ">
+      <motion.div
+        variants={load}
+        initial="initial"
+        animate="animate"
+        className="bg-white max-w-[350px] w-full max-h-[200px] h-full rounded-md px-3 py-2 "
+      >
         <h1 className=" text-center text-[#e5720e] text-xl font-bold ">
           Order Confirmed
         </h1>
@@ -18,7 +38,7 @@ function ThankYou({ info }) {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

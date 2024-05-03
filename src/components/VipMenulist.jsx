@@ -1,5 +1,6 @@
 import React from "react";
 import Menucard from "./Menucard";
+import { motion } from "framer-motion";
 
 const Dishes = [
   {
@@ -11,9 +12,31 @@ const Dishes = [
     name: "Pounded Yam and Gbegiri",
   },
 ];
+
+const load = {
+  initial: {
+    x: 1000,
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 2,
+      type: "spring",
+      ease: "easeIn",
+      when: "beforeChildren",
+    },
+  },
+};
 function Menulist() {
   return (
-    <div className="flex flex-col justify-between items-center gap-10 max-h-[72%] h-full ">
+    <motion.div
+      variants={load}
+      initial="initial"
+      animate="animate"
+      className="flex flex-col justify-between items-center gap-10 max-h-[72%] h-full "
+    >
       <h1 className="text-[#d57c2c] text-2xl text-center ">
         Please select your Meal
       </h1>
@@ -22,7 +45,7 @@ function Menulist() {
           <Menucard key={index} dish={dish} />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

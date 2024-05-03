@@ -59,12 +59,11 @@ function Menucard({ dish }) {
     } else {
       setShowLoader(true);
       setShowThankYou(false);
-      console.log("Order submitted");
-      console.log(tableDets);
+
       try {
         // Call API to get trending movies
         const docRef = await addDoc(collection(db, "orders"), tableDets);
-        console.log("Document written with ID: ", docRef.id);
+
         setShowThankYou(true);
       } catch (err) {
         // Handle error
